@@ -1,0 +1,63 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\babel@toc {english}{}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {1}Abstract}{3}{chapter.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {2}Mechanics}{4}{chapter.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{Topology and Mobility Analysis}{4}{section*.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{Exercise 2}{5}{section*.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{Geometry and Kinematics}{6}{section*.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.0.1}Exercise 4}{6}{subsection.2.0.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.0.2}Exercise 5}{6}{subsection.2.0.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.0.3}Exercise 6}{6}{subsection.2.0.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{Dynamics}{7}{section*.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.0.4}Exercise 7}{7}{subsection.2.0.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.0.5}Exercise 8}{7}{subsection.2.0.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.0.6}Exercise 9}{8}{subsection.2.0.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {3}Control}{8}{chapter.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{Exercise 10}{9}{section*.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{Exercise 11}{9}{section*.7}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{Exercise 12}{9}{section*.8}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {4}Questionnaire}{9}{chapter.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{Question 1}{10}{section*.9}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{Question 2}{10}{section*.10}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{Question 3}{11}{section*.11}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{Question 4}{11}{section*.12}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{Question 5}{11}{section*.13}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{Question 6}{12}{section*.14}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{Question 7}{12}{section*.15}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{Question 8}{12}{section*.16}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{Question 9}{12}{section*.17}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{Question 10}{13}{section*.18}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{Equations style}{13}{section*.19}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{Additional Boxes}{13}{section*.20}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{Final instructions}{13}{section*.21}%
+\contentsfinish 
