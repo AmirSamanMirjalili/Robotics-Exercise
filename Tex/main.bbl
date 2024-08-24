@@ -1,0 +1,30 @@
+\begin{thebibliography}{1}
+
+\bibitem{cheng2003dynamics}
+Hui Cheng, Yiu-Kuen Yiu, and Zexiang Li.
+\newblock Dynamics and control of redundantly actuated parallel manipulators.
+\newblock {\em IEEE/ASME Transactions on mechatronics}, 8(4):483--491, 2003.
+
+\bibitem{featherstone2014rigid}
+Roy Featherstone.
+\newblock {\em Rigid body dynamics algorithms}.
+\newblock Springer, 2014.
+
+\bibitem{gogu2005chebychev}
+Grigore Gogu.
+\newblock Chebychev--gr{\"u}bler--kutzbach's criterion for mobility calculation
+  of multi-loop mechanisms revisited via theory of linear transformations.
+\newblock {\em European Journal of Mechanics-A/Solids}, 24(3):427--441, 2005.
+
+\bibitem{lu2017approximation}
+Shengnan Lu, Dimiter Zlatanov, and Xilun Ding.
+\newblock Approximation of cylindrical surfaces with deployable bennett
+  networks.
+\newblock {\em Journal of Mechanisms and Robotics}, 9(2):021001, 2017.
+
+\bibitem{taghirad2013parallel}
+Hamid~D Taghirad.
+\newblock {\em Parallel robots: mechanics and control}.
+\newblock CRC press, 2013.
+
+\end{thebibliography}

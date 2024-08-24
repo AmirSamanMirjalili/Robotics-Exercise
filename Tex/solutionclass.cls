@@ -67,40 +67,40 @@
 \RequirePackage{nameref} % Cross-referencing by name
 \RequirePackage{changepage} % Change page dimensions
 
-% BIBLIOGRAFY
-\RequirePackage[backend    = biber, 
-                style      = ext-authoryear-comp,
-                sorting    = nyvt, 
-                backref    = false,
-                articlein  = false,
-                uniquename = true,
-                doi        = true, 
-                dashed     = false]{biblatex} % Custom bibliography
+% % BIBLIOGRAFY
+% \RequirePackage[backend    = biber, 
+%                 style      = ext-authoryear-comp,
+%                 sorting    = nyvt, 
+%                 backref    = false,
+%                 articlein  = false,
+%                 uniquename = true,
+%                 doi        = true, 
+%                 dashed     = false]{biblatex} % Custom bibliography
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % BIBLIOGRAFYU SETTINGS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % The below settings add the .bib archive and define the format which will be compilated
-\addbibresource{bib.bib} %Load references
-\DeclareFieldFormat[article,periodical]{volume}{\mkbibbold{#1}}
+% \addbibresource{reference.bib} %Load references
+% \DeclareFieldFormat[article,periodical]{volume}{\mkbibbold{#1}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % The below commands was created to make a onte kind of reference citing
-\newcommand{\therefs}{%
-    {%\bfseries%
-    \newline%
-    \textcolor{myLColor}{References:}%
-    }
-}
+% \newcommand{\therefs}{%
+%     {%\bfseries%
+%     \newline%
+%     \textcolor{myLColor}{References:}%
+%     }
+% }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % The below setting was written to print the references
-\AtEndDocument{%
-    \clearpage
-    \pagestyle{fancy} % clears the middle part of the headers from here on (no year to specify)
-    \markboth{\textsc{References}}{\textsc{References}} % ensures headers are working as intended during reference chapter
-    \printbibliography[heading=bibintoc, title=References]
-} % prints references
+% \AtEndDocument{%
+%     \clearpage
+%     \pagestyle{fancy} % clears the middle part of the headers from here on (no year to specify)
+%     \markboth{\textsc{References}}{\textsc{References}} % ensures headers are working as intended during reference chapter
+%     \printbibliography[heading=bibintoc, title=References]
+% } % prints references
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 

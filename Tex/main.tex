@@ -1,6 +1,13 @@
 \documentclass{solutionclass}
+\usepackage{subcaption}  % Add this to your preamble if not already included
+\usepackage{float}
+\usepackage{placeins} 
+\usepackage{tikz}
+\usepackage{natbib}
+% Add this line to your preamble
+\renewcommand{\bibname}{References}
 
-\pagestyle{plain}
+
 
 \begin{document}
 \dominitoc  % Initialize minitoc
@@ -25,13 +32,16 @@
 \input{mechanics}
 \input{control}
 \input{questionnaire}
-\input{equations_style}
-\input{additional_boxes}
-\input{final_instructions}
+
 
 \thispagestyle{fancyplain}
 \fancyhead{}
 \renewcommand{\headrulewidth}{0pt}
 \rfoot{Template by L. R. Ximenes (Jimeens)}
+
+\newpage % Start the references on a new page
+\addcontentsline{toc}{chapter}{References} 
+\bibliographystyle{plain}  % or another style like 'unsrt', 'alpha', etc.
+\bibliography{reference}  % Note: don't include the .bib extension here
 
 \end{document}
