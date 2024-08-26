@@ -400,10 +400,305 @@ It seems almost magical that a simple formula like the Chebychev–Grübler–Ku
 
 \section{Geometry and Kinematics}
 \subsection{Exercise 4}
-\lipsum[7]
+
+
+A serially connected 3 DOF robotic leg with 2 orthogonally intersecting revolute joints and a 1 DOF prismatic joint is shown in Figure \ref{fig:3dof_robotic_leg}. Given $q_1$ and $q_2$ denote the joint angles in the first two revolute joints and $q_3$ denote the linear displacement in the prismatic joint:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.3\textwidth]{3dofUP.pdf}
+	\caption{A 3 DOF robotic leg with 2 revolute and 1 prismatic joints}
+	\label{fig:3dof_robotic_leg}
+\end{figure}
 
 \begin{solution}
-    \lipsum[8]
+	
+	\subsection*{1. Geometric object where the end-effector point E lives}
+	
+	The end-effector point E lives in a three-dimensional Euclidean space, $\mathbb{R}^3$. More specifically, it traces out a subset of $\mathbb{R}^3$ that forms the workspace of the robot.
+	
+	\subsection*{2. Forward Kinematics using Product of Exponentials (PoE)}
+
+Based on Kevin-Lynch's Modern Robotics book \cite{lynch2017modern} the forward kinematics for our 3 DOF robotic leg can be derived using the Product of Exponentials (PoE) formula. This method offers an elegant and intuitive approach, particularly suitable for open kinematic chains like our robot leg. Let's go through the process step-by-step:
+
+\subsubsection*{Step 1: Define Frames}
+\begin{itemize}
+    \item \textbf{Space Frame \{s\}}: Fixed at the base of the robot.
+    \item \textbf{Body Frame \{b\}}: Attached to the end-effector (point E).
+\end{itemize}
+
+\subsubsection*{Step 2: Zero Configuration}
+Set all joint variables $(q_1, q_2, q_3)$ to zero. In this configuration, the transformation matrix $M \in SE(3)$ from \{s\} to \{b\} is:
+
+\begin{equation}
+    M = \begin{bmatrix}
+    1 & 0 & 0 & 0 \\
+    0 & 1 & 0 & 0 \\
+    0 & 0 & 1 & L_0 \\
+    0 & 0 & 0 & 1
+    \end{bmatrix}
+\end{equation}
+
+\subsubsection*{Step 3: Determine Screw Axes}
+For our robot, we need to determine the screw axes for each joint $(\omega_i^T , v_i^T)^T $. The screw axis is represented by two vectors: $\omega_i$ (axis of rotation or translation) and $v_i$ (linear velocity). Let's examine how we calculate $v_i$ for each type of joint:
+
+\paragraph{Revolute Joints (Joints 1 and 2):}
+For a revolute joint, $v_i$ is calculated using the formula:
+
+\begin{equation}
+v_i = -\omega_i \times q_i
+\end{equation}
+
+where $q_i$ is any point on the joint axis. This formula comes from the fact that the linear velocity of any point on a rigid body rotating about an axis is given by the cross product of the angular velocity vector and the position vector from any point on the axis to the point in question.
+
+\begin{itemize}
+	\item \textbf{Joint 1:} The axis of rotation is along the y-axis, passing through the origin.
+	\begin{align*}
+	\omega_1 &= [0, 1, 0]^T \\
+	q_1 &= [0, 0, 0]^T \text{ (we can choose the origin as our point)} \\
+	v_1 &= -\omega_1 \times q_1 = -[0, 0, 1]^T \times [0, 0, 0]^T = [0, 0, 0]^T
+	\end{align*}
+	
+	\item \textbf{Joint 2:} The axis of rotation is along the x-axis, passing through the origin $[0, 0, 0]$.
+	\begin{align*}
+	\omega_2 &= [1, 0, 0]^T \\
+	q_2 &= [0, 0, 0]^T \\
+	v_2 &= -\omega_2 \times q_2 = -[1, 0, 0]^T \times [0, 0, 0]^T = [0, 0, 0]^T
+	\end{align*}
+\end{itemize}
+
+\paragraph{Prismatic Joint (Joint 3):}
+For a prismatic joint, $\omega_i$ is zero (no rotation), and $v_i$ is simply a unit vector in the direction of positive translation.
+
+\begin{itemize}
+	\item \textbf{Joint 3:} The prismatic joint moves along the z-axis of the space frame after the second rotation.
+	\begin{align*}
+	\omega_3 &= [0, 0, 0]^T \\
+	v_3 &= [0, 0, 1]^T \text{ (unit vector in the direction of translation)}
+	\end{align*}
+\end{itemize}
+
+This calculation of $v_i$ ensures that the screw axis correctly represents the motion of each joint, whether it's a rotation around an axis (revolute) or a translation along an axis (prismatic).
+
+\subsubsection*{Step 4: Screw Axis Matrices (Extended Explanation)}
+
+In the Product of Exponentials (PoE) formula, we represent each joint's motion using a 4x4 matrix $[S_i] \in se(3)$, where $se(3)$ is the Lie algebra of the Special Euclidean group SE(3). This matrix encapsulates both the rotational and translational components of the joint's motion.
+
+The general form of the screw axis matrix $[S_i]$ is:
+
+\begin{equation}
+[S_i] = \begin{bmatrix}
+[\omega_i] & v_i \\
+0 & 0
+\end{bmatrix}
+\end{equation}
+
+where $[\omega_i]$ is the 3x3 skew-symmetric matrix representation of $\omega_i$, and $v_i$ is the 3x1 linear velocity vector we calculated in Step 3.
+
+For a vector $\omega = [\omega_1, \omega_2, \omega_3]^T$, its skew-symmetric matrix representation is:
+
+\begin{equation}
+[\omega] = \begin{bmatrix}
+0 & -\omega_3 & \omega_2 \\
+\omega_3 & 0 & -\omega_1 \\
+-\omega_2 & \omega_1 & 0
+\end{bmatrix}
+\end{equation}
+
+Now, let's calculate $[S_i]$ for each joint:
+
+\paragraph{Joint 1 (Revolute):}
+$\omega_1 = [0, 1, 0]^T$, $v_1 = [0, 0, 0]^T$
+
+\begin{equation}
+[S_1] = \begin{bmatrix}
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 0 \\
+-1 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0
+\end{bmatrix}
+\end{equation}
+
+\paragraph{Joint 2 (Revolute):}
+$\omega_2 = [1, 0, 0]^T$, $v_2 = [0, 0, 0]^T$
+
+\begin{equation}
+[S_2] = \begin{bmatrix}
+0 & 0 & 0 & 0 \\
+0 & 0 & -1 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 0
+\end{bmatrix}
+\end{equation}
+
+\paragraph{Joint 3 (Prismatic):}
+$\omega_3 = [0, 0, 0]^T$, $v_3 = [0, 0, 1]^T$
+
+\begin{equation}
+[S_3] = \begin{bmatrix}
+0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 1\\
+0 & 0 & 0 & 0
+\end{bmatrix}
+\end{equation}
+
+\paragraph{Interpretation:}
+- For revolute joints (1 and 2), the upper-left 3x3 submatrix represents the axis of rotation, while the upper-right 3x1 vector represents the moment of the axis.
+- For the prismatic joint (3), the upper-left 3x3 submatrix is zero
+
+\subsubsection*{Step 5: PoE Formula}
+The forward kinematics is given by:
+
+\begin{equation}
+    T(q_1, q_2, q_3) = e^{[S_1]q_1} e^{[S_2]q_2} e^{[S_3]q_3} M
+\end{equation}
+
+\subsubsection*{Step 6: Compute Matrix Exponentials}
+\begin{align*}
+    e^{[S_1]q_1} &= \begin{bmatrix}
+    \cos q_1 & -\sin q_1 & 0 & 0 \\
+    \sin q_1 & \cos q_1 & 0 & 0 \\
+    0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & 1
+    \end{bmatrix} \\
+    e^{[S_2]q_2} &= \begin{bmatrix}
+    1 & 0 & 0 & 0 \\
+    0 & \cos q_2 & -\sin q_2 & -L_1(1-\cos q_2) \\
+    0 & \sin q_2 & \cos q_2 & -L_1 \sin q_2 \\
+    0 & 0 & 0 & 1
+    \end{bmatrix} \\
+    e^{[S_3]q_3} &= \begin{bmatrix}
+    1 & 0 & 0 & q_3 \\
+    0 & 1 & 0 & 0 \\
+    0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & 1
+    \end{bmatrix}
+\end{align*}
+
+\subsubsection*{Step 7: Final Forward Kinematics}
+Multiplying these matrices together, we get the final transformation:
+
+\begin{equation}
+    T(q_1, q_2, q_3) = \begin{bmatrix}
+    \cos q_1 \cos q_2 & -\cos q_1 \sin q_2 & \sin q_1 & \cos q_1 (L_1 + q_3 \cos q_2) \\
+    \sin q_1 \cos q_2 & -\sin q_1 \sin q_2 & -\cos q_1 & \sin q_1 (L_1 + q_3 \cos q_2) \\
+    \sin q_2 & \cos q_2 & 0 & L_0 + q_3 \sin q_2 \\
+    0 & 0 & 0 & 1
+    \end{bmatrix}
+\end{equation}
+
+The position of the end-effector $(x, y, z)$ can be extracted from the last column of this matrix:
+
+\begin{align*}
+    x &= \cos q_1 (L_1 + q_3 \cos q_2) \\
+    y &= \sin q_1 (L_1 + q_3 \cos q_2) \\
+    z &= L_0 + q_3 \sin q_2
+\end{align*}
+
+This result matches our earlier geometric derivation, validating both approaches.
+
+\subsubsection*{Advantages of PoE over Denavit-Hartenberg (D-H)}
+\begin{itemize}
+    \item No need to define individual link frames
+    \item Uniform treatment of revolute and prismatic joints
+    \item More intuitive geometric interpretation via screw axes
+    \item Particularly advantageous for open kinematic chains like our robot leg
+\end{itemize}
+
+The PoE method provides a systematic and elegant approach to deriving forward kinematics, offering both mathematical rigor and geometric intuition.
+	
+	\subsection*{3. Inverse Kinematics}
+	
+	The inverse kinematics expression $(q_1, q_2, q_3) = f^{-1}(x, y, z)$ can be derived as follows:
+	
+	\begin{align*}
+	q_1 &= \arctan2(y, x) \\
+	q_3 &= \sqrt{(x^2 + y^2 - L_1^2) + (z - L_0)^2} \\
+	q_2 &= \arctan2(z - L_0, \sqrt{x^2 + y^2 - L_1^2})
+	\end{align*}
+	
+	Note that this solution assumes $x^2 + y^2 \geq L_1^2$ to ensure a real solution exists.
+	
+	\subsection*{4. Program to verify forward and inverse kinematics}
+	
+	Here's a Python program that verifies the forward and inverse kinematics and provides a simple visualization:
+	
+	\begin{lstlisting}[language=Python]
+	import numpy as np
+	import matplotlib.pyplot as plt
+	from mpl_toolkits.mplot3d import Axes3D
+	
+	L0 = 1.0  # Height of first joint
+	L1 = 0.5  # Length of first link
+	
+	def forward_kinematics(q1, q2, q3):
+	x = np.cos(q1) * (L1 + q3 * np.cos(q2))
+	y = np.sin(q1) * (L1 + q3 * np.cos(q2))
+	z = L0 + q3 * np.sin(q2)
+	return x, y, z
+	
+	def inverse_kinematics(x, y, z):
+	q1 = np.arctan2(y, x)
+	q3 = np.sqrt((x**2 + y**2 - L1**2) + (z - L0)**2)
+	q2 = np.arctan2(z - L0, np.sqrt(x**2 + y**2 - L1**2))
+	return q1, q2, q3
+	
+	# Verify for random poses
+	for _ in range(5):
+	q1, q2, q3 = np.random.uniform(0, 2*np.pi), np.random.uniform(-np.pi/2, np.pi/2), np.random.uniform(0, 1)
+	x, y, z = forward_kinematics(q1, q2, q3)
+	q1_inv, q2_inv, q3_inv = inverse_kinematics(x, y, z)
+	print(f"Original: q1={q1:.2f}, q2={q2:.2f}, q3={q3:.2f}")
+	print(f"Inverse:  q1={q1_inv:.2f}, q2={q2_inv:.2f}, q3={q3_inv:.2f}")
+	print(f"Position: x={x:.2f}, y={y:.2f}, z={z:.2f}\n")
+	
+	# Visualization
+	fig = plt.figure()
+	ax = fig.add_subplot(111, projection='3d')
+	
+	q1, q2, q3 = np.random.uniform(0, 2*np.pi), np.random.uniform(-np.pi/2, np.pi/2), np.random.uniform(0, 1)
+	x, y, z = forward_kinematics(q1, q2, q3)
+	
+	ax.plot([0, 0, x], [0, 0, y], [0, L0, z], 'r-')
+	ax.scatter([x], [y], [z], c='b', s=100)
+	
+	ax.set_xlabel('X')
+	ax.set_ylabel('Y')
+	ax.set_zlabel('Z')
+	ax.set_title('3 DOF Robotic Leg')
+	plt.show()
+	
+	\end{lstlisting}
+	
+	\subsection*{5. Workspace plot}
+	
+	To plot the workspace, we can sample the joint space and plot the resulting end-effector positions:
+	
+	\begin{lstlisting}[language=Python]
+	# Workspace plot
+	fig = plt.figure()
+	ax = fig.add_subplot(111, projection='3d')
+	
+	q1_range = np.linspace(0, 2*np.pi, 50)
+	q2_range = np.linspace(-np.pi/2, np.pi/2, 50)
+	q3_range = np.linspace(0, 1, 10)
+	
+	for q1 in q1_range:
+	for q2 in q2_range:
+	for q3 in q3_range:
+	x, y, z = forward_kinematics(q1, q2, q3)
+	ax.scatter(x, y, z, c='b', s=1)
+	
+	ax.set_xlabel('X')
+	ax.set_ylabel('Y')
+	ax.set_zlabel('Z')
+	ax.set_title('Workspace of 3 DOF Robotic Leg')
+	plt.show()
+	\end{lstlisting}
+	
+	This code will generate a plot showing the workspace of the robotic leg.
+	
 \end{solution}
 
 \subsection{Exercise 5}

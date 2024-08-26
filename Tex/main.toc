@@ -9,26 +9,32 @@
 \contentsline {subsection}{Exercise 3}{10}{subsection.2.0.3}%
 \contentsline {section}{Geometry and Kinematics}{13}{section*.9}%
 \contentsline {subsection}{\numberline {2.0.4}Exercise 4}{13}{subsection.2.0.4}%
-\contentsline {subsection}{\numberline {2.0.5}Exercise 5}{14}{subsection.2.0.5}%
-\contentsline {subsection}{\numberline {2.0.6}Exercise 6}{14}{subsection.2.0.6}%
-\contentsline {section}{Dynamics}{15}{section*.10}%
-\contentsline {subsection}{\numberline {2.0.7}Exercise 7}{15}{subsection.2.0.7}%
-\contentsline {subsection}{\numberline {2.0.8}Exercise 8}{15}{subsection.2.0.8}%
-\contentsline {subsection}{\numberline {2.0.9}Exercise 9}{15}{subsection.2.0.9}%
-\contentsline {chapter}{\numberline {3}Control}{16}{chapter.3}%
-\contentsline {section}{Exercise 10}{16}{section*.11}%
-\contentsline {section}{Exercise 11}{16}{section*.12}%
-\contentsline {section}{Exercise 12}{17}{section*.13}%
-\contentsline {chapter}{\numberline {4}Questionnaire}{17}{chapter.4}%
-\contentsline {section}{Question 1}{17}{section*.14}%
-\contentsline {section}{Question 2}{18}{section*.15}%
-\contentsline {section}{Question 3}{18}{section*.16}%
-\contentsline {section}{Question 4}{18}{section*.17}%
-\contentsline {section}{Question 5}{19}{section*.18}%
-\contentsline {section}{Question 6}{19}{section*.19}%
-\contentsline {section}{Question 7}{19}{section*.20}%
-\contentsline {section}{Question 8}{20}{section*.21}%
-\contentsline {section}{Question 9}{20}{section*.22}%
-\contentsline {section}{Question 10}{20}{section*.23}%
-\contentsline {chapter}{References}{21}{section*.23}%
+\contentsline {paragraph}{Revolute Joints (Joints 1 and 2):}{15}{paragraph*.11}%
+\contentsline {paragraph}{Prismatic Joint (Joint 3):}{15}{paragraph*.12}%
+\contentsline {paragraph}{Joint 1 (Revolute):}{16}{paragraph*.13}%
+\contentsline {paragraph}{Joint 2 (Revolute):}{16}{paragraph*.14}%
+\contentsline {paragraph}{Joint 3 (Prismatic):}{16}{paragraph*.15}%
+\contentsline {paragraph}{Interpretation:}{16}{paragraph*.16}%
+\contentsline {subsection}{\numberline {2.0.5}Exercise 5}{19}{subsection.2.0.5}%
+\contentsline {subsection}{\numberline {2.0.6}Exercise 6}{20}{subsection.2.0.6}%
+\contentsline {section}{Dynamics}{20}{section*.17}%
+\contentsline {subsection}{\numberline {2.0.7}Exercise 7}{20}{subsection.2.0.7}%
+\contentsline {subsection}{\numberline {2.0.8}Exercise 8}{21}{subsection.2.0.8}%
+\contentsline {subsection}{\numberline {2.0.9}Exercise 9}{21}{subsection.2.0.9}%
+\contentsline {chapter}{\numberline {3}Control}{21}{chapter.3}%
+\contentsline {section}{Exercise 10}{22}{section*.18}%
+\contentsline {section}{Exercise 11}{22}{section*.19}%
+\contentsline {section}{Exercise 12}{22}{section*.20}%
+\contentsline {chapter}{\numberline {4}Questionnaire}{22}{chapter.4}%
+\contentsline {section}{Question 1}{23}{section*.21}%
+\contentsline {section}{Question 2}{24}{section*.22}%
+\contentsline {section}{Question 3}{24}{section*.23}%
+\contentsline {section}{Question 4}{24}{section*.24}%
+\contentsline {section}{Question 5}{25}{section*.25}%
+\contentsline {section}{Question 6}{25}{section*.26}%
+\contentsline {section}{Question 7}{25}{section*.27}%
+\contentsline {section}{Question 8}{25}{section*.28}%
+\contentsline {section}{Question 9}{26}{section*.29}%
+\contentsline {section}{Question 10}{26}{section*.30}%
+\contentsline {chapter}{References}{27}{section*.30}%
 \contentsfinish 

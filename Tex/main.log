@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2024.7.31)  24 AUG 2024 14:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2024.7.31)  26 AUG 2024 12:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1385,23 +1385,23 @@ Package csquotes Info: Redefining alias 'default' -> 'english'.
  (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 12
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 13
 .
 
 (/usr/share/texmf/tex/latex/lm/t1lmr.fd
@@ -1471,10 +1471,10 @@ s been generated with the most recent feature set (\pgfplotsset{compat=1.16}).
 
 \c@lstlisting=\count390
 \AtBeginShipoutBox=\box147
-Package hyperref Info: Link coloring ON on input line 12.
-LaTeX Info: Redefining \ref on input line 12.
-LaTeX Info: Redefining \pageref on input line 12.
-LaTeX Info: Redefining \nameref on input line 12.
+Package hyperref Info: Link coloring ON on input line 13.
+LaTeX Info: Redefining \ref on input line 13.
+LaTeX Info: Redefining \pageref on input line 13.
+LaTeX Info: Redefining \nameref on input line 13.
 (./main.out) (./main.out)
 \@outlinefile=\write7
 \openout7 = `main.out'.
@@ -1514,14 +1514,14 @@ LaTeX Info: Redefining \nameref on input line 12.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Info: Redefining \microtypecontext on input line 12.
+LaTeX Info: Redefining \microtypecontext on input line 13.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `basictext'.
-LaTeX Info: Redefining \showhyphens on input line 12.
+LaTeX Info: Redefining \showhyphens on input line 13.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -1531,11 +1531,11 @@ File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman
 )
 Package lastpage Info: Please have a look at the pageslts package at
 (lastpage)             https://www.ctan.org/pkg/pageslts
-(lastpage)             ! on input line 12.
+(lastpage)             ! on input line 13.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 Package minitoc Info: I0024
-(minitoc)             PREPARING MINITOCS FROM main.toc on input line 14.
+(minitoc)             PREPARING MINITOCS FROM main.toc on input line 15.
 Package minitoc Info: I0033
 (minitoc)             Writing main.mtc1.
 \openout3 = `main.mtc1'.
@@ -1562,7 +1562,7 @@ Package microtype Info: Character `029' is missing
 <University_Logo.png, id=168, 90.3375pt x 85.2786pt>
 File: University_Logo.png Graphic file (type png)
 <use University_Logo.png>
-Package pdftex.def Info: University_Logo.png  used on input line 17.
+Package pdftex.def Info: University_Logo.png  used on input line 18.
 (pdftex.def)             Requested size: 71.13188pt x 67.14941pt.
  [1
 
@@ -1570,7 +1570,7 @@ Package pdftex.def Info: University_Logo.png  used on input line 17.
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./University_Logo.png>]
 
 LaTeX Font Warning: Font shape `T1/lmr/bx/sc' undefined
-(Font)              using `T1/lmr/bx/n' instead on input line 27.
+(Font)              using `T1/lmr/bx/n' instead on input line 28.
 
 (./main.toc
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 5
@@ -1700,23 +1700,59 @@ File: redudant.png Graphic file (type png)
 Package pdftex.def Info: redudant.png  used on input line 356.
 (pdftex.def)             Requested size: 227.62209pt x 321.23846pt.
  [10 <./The-Bennett-linkage-and-its-geometric-description-22_Q640.jpg>]
-[11] [12 <./redudant.png>] [13]
-Underfull \vbox (badness 2035) has occurred while \output is active []
+[11] [12 <./redudant.png>]
+<3dofUP.pdf, id=389, 8.53583pt x 17.07166pt>
+File: 3dofUP.pdf Graphic file (type pdf)
+<use 3dofUP.pdf>
+Package pdftex.def Info: 3dofUP.pdf  used on input line 409.
+(pdftex.def)             Requested size: 145.11053pt x 290.37573pt.
 
- [14]
-[15]) (./control.tex
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [13]
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2019/09/10 1.8c listings language file
+)
+Overfull \hbox (287.17183pt too wide) in paragraph at lines 649--650
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (50.64992pt too wide) in paragraph at lines 653--654
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (287.17183pt too wide) in paragraph at lines 660--661
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [14 <./3dofUP.pdf>] [15] [16] [17] [18] [19] [20]) (./control.tex
 Chapter 3.
 \openout3 = `main.mtc'.
 
 \openout3 = `main.mtc'.
 
-(./main.mtc3)) (./questionnaire.tex
+(./main.mtc3)
+Underfull \vbox (badness 2165) has occurred while \output is active []
+
+ [21])
+(./questionnaire.tex
 Chapter 4.
 \openout3 = `main.mtc'.
 
 \openout3 = `main.mtc'.
 
-(./main.mtc4) [16] [17] [18] [19]) [20] (./main.bbl)
+(./main.mtc4)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [22]
+[23] [24] [25]) [26] (./main.bbl)
 Package minitoc Info: I0009
 (minitoc)             Listing minitoc auxiliary files. 
 (minitoc)             Creating the main.maf file.
@@ -1740,44 +1776,46 @@ Package minitoc(hints) Warning: W0024
 
 
 AED: lastpage setting LastPage
-[21]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 47.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 47.
+[27]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 52.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 52.
  (./main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 47.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 47.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 52.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 52.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: BC27E277B881F61396AF83C81FB39B53;1861.
+(rerunfilecheck)             Checksum: 74357E244BE5C774AF0990C87657253A;1861.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 46772 strings out of 481239
- 1050275 string characters out of 5920377
- 1821107 words of memory out of 5000000
- 60725 multiletter control sequences out of 15000+600000
- 649318 words of font info for 169 fonts, out of 8000000 for 9000
+ 47352 strings out of 481239
+ 1056160 string characters out of 5920377
+ 1900262 words of memory out of 5000000
+ 61208 multiletter control sequences out of 15000+600000
+ 652472 words of font info for 172 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 81i,14n,131p,1129b,1429s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 81i,15n,131p,1129b,1738s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dv
-ips/lm/lm-mathex.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/s
-hare/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm
+ips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share
+/texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm
 -mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}</usr/share/texmf/f
 onts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.
 pfb></usr/share/texmf/fonts/type1/public/lm/lmbx8.pfb></usr/share/texmf/fonts/t
 ype1/public/lm/lmcsc10.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb><
 /usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1
 /public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/sh
-are/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/l
-m/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb></usr/share/tex
-mf/fonts/type1/public/lm/lmro10.pfb></usr/share/texmf/fonts/type1/public/lm/lms
-y10.pfb>
-Output written on main.pdf (21 pages, 663264 bytes).
+are/texmf/fonts/type1/public/lm/lmr6.pfb></usr/share/texmf/fonts/type1/public/l
+m/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf
+/fonts/type1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/lm/lmro1
+0.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/font
+s/type1/public/lm/lmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/symbols/msbm10.pfb>
+Output written on main.pdf (27 pages, 752532 bytes).
 PDF statistics:
- 512 PDF objects out of 1000 (max. 8388607)
- 407 compressed objects within 5 object streams
- 67 named destinations out of 1000 (max. 500000)
- 35771 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 657 PDF objects out of 1000 (max. 8388607)
+ 539 compressed objects within 6 object streams
+ 154 named destinations out of 1000 (max. 500000)
+ 36288 words of extra memory for PDF output out of 42996 (max. 10000000)
 
