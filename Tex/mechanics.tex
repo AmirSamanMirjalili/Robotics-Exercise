@@ -557,21 +557,21 @@ The forward kinematics is given by:
 \subsubsection*{Step 6: Compute Matrix Exponentials}
 \begin{align*}
     e^{[S_1]q_1} &= \begin{bmatrix}
-    \cos q_1 & -\sin q_1 & 0 & 0 \\
-    \sin q_1 & \cos q_1 & 0 & 0 \\
-    0 & 0 & 1 & 0 \\
+    \cos q_1 & 0 & \sin q_1 & 0 \\
+    0 & 1 & 0 & 0 \\
+    -\sin q_1 & 0 & \cos q_1 & 0 \\
     0 & 0 & 0 & 1
     \end{bmatrix} \\
     e^{[S_2]q_2} &= \begin{bmatrix}
     1 & 0 & 0 & 0 \\
-    0 & \cos q_2 & -\sin q_2 & -L_1(1-\cos q_2) \\
-    0 & \sin q_2 & \cos q_2 & -L_1 \sin q_2 \\
+    0 & \cos q_2 & -\sin q_2 & 0 \\
+    0 & \sin q_2 & \cos q_2 & 0 \\
     0 & 0 & 0 & 1
     \end{bmatrix} \\
-    e^{[S_3]q_3} &= \begin{bmatrix}
-    1 & 0 & 0 & q_3 \\
+    e^{[S_3]d} &= \begin{bmatrix}
+    1 & 0 & 0 & 0 \\
     0 & 1 & 0 & 0 \\
-    0 & 0 & 1 & 0 \\
+    0 & 0 & 1 & d \\
     0 & 0 & 0 & 1
     \end{bmatrix}
 \end{align*}
@@ -581,9 +581,9 @@ Multiplying these matrices together, we get the final transformation:
 
 \begin{equation}
     T(q_1, q_2, q_3) = \begin{bmatrix}
-    \cos q_1 \cos q_2 & -\cos q_1 \sin q_2 & \sin q_1 & \cos q_1 (L_1 + q_3 \cos q_2) \\
-    \sin q_1 \cos q_2 & -\sin q_1 \sin q_2 & -\cos q_1 & \sin q_1 (L_1 + q_3 \cos q_2) \\
-    \sin q_2 & \cos q_2 & 0 & L_0 + q_3 \sin q_2 \\
+    \cos q_1 & \sin q_1 \sin q_2 & \sin q_1 \cos q_2 & \cos q_2 \sin q_1 (L_0 + q_3) \\
+    0 & \cos q_2 & -\sin q_2 & -\sin q_2 (L_0 + q_3) \\
+    -\sin q_1 & \cos q_1 \sin q_2 & \cos q_1 \cos q_2 & \cos q_2 \cos q_1 (L_0 + q_3) \\
     0 & 0 & 0 & 1
     \end{bmatrix}
 \end{equation}
@@ -591,9 +591,9 @@ Multiplying these matrices together, we get the final transformation:
 The position of the end-effector $(x, y, z)$ can be extracted from the last column of this matrix:
 
 \begin{align*}
-    x &= \cos q_1 (L_1 + q_3 \cos q_2) \\
-    y &= \sin q_1 (L_1 + q_3 \cos q_2) \\
-    z &= L_0 + q_3 \sin q_2
+    x &= \cos q_2 \sin q_1 (L_0 + q_3) \\
+    y &= -\sin q_2 (L_0 + q_3) \\
+    z &= \cos q_2 \cos q_1 (L_0 + q_3)
 \end{align*}
 
 This result matches our earlier geometric derivation, validating both approaches.

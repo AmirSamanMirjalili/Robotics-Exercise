@@ -1,0 +1,35 @@
+# Robot Kinematics in Maple
+
+with(LinearAlgebra):
+# Assume positive values for parameters
+ assume(theta1 > 0, theta2 > 0, d > 0, L0 > 0):
+T := Matrix(4,4):
+T[1,1] := 1.0*cos(abs(theta1));
+T[1,2] := 0.5*theta1*theta2*(cos(abs(theta1) - abs(theta2)) - cos(abs(theta1) + abs(theta2)))/abs(theta1*theta2);
+T[1,3] := 0.5*theta1*(sin(abs(theta1) - abs(theta2)) + sin(abs(theta1) + abs(theta2)))/abs(theta1);
+T[1,4] := (1/4)*theta1*(2.0*L0 + 2*d)*(sin(abs(theta1) - abs(theta2)) + sin(abs(theta1) + abs(theta2)))/abs(theta1);
+T[2,1] := 0.0;
+T[2,2] := 1.0*cos(abs(theta2));
+T[2,3] := -1.0*theta2*sin(abs(theta2))/abs(theta2);
+T[2,4] := (1/2)*theta2*(-2.0*L0 - 2*d)*sin(abs(theta2))/abs(theta2);
+T[3,1] := -1.0*theta1*sin(abs(theta1))/abs(theta1);
+T[3,2] := 0.5*theta2*(-sin(abs(theta1) - abs(theta2)) + sin(abs(theta1) + abs(theta2)))/abs(theta2);
+T[3,3] := 0.5*cos(abs(theta1) - abs(theta2)) + 0.5*cos(abs(theta1) + abs(theta2));
+T[3,4] := 1.0*(L0 + d)*cos(abs(theta1))*cos(abs(theta2));
+T[4,1] := 0.0;
+T[4,2] := 0.0;
+T[4,3] := 0.0;
+T[4,4] := 1;
+T := simplify(T);
+print("Full Transformation Matrix:");
+print(T);
+
+# Extract Rotation Matrix
+R := SubMatrix(T, 1..3, 1..3);
+print("Rotation Matrix:");
+print(R);
+
+# Extract Position Vector
+p := Vector([T[1,4], T[2,4], T[3,4]]);
+print("Position Vector:");
+print(p);
