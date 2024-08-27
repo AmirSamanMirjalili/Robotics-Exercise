@@ -38,6 +38,12 @@ Hayk Martiros, Aaron Miller, Nathan Bucki, Bradley Solliday, Ryan Kennedy, Jack
 \newblock Symforce: Symbolic computation and code generation for robotics.
 \newblock {\em arXiv preprint arXiv:2204.07889}, 2022.
 
+\bibitem{sun2020kinematic}
+Tao Sun, Binbin Lian, Shuofei Yang, and Yimin Song.
+\newblock Kinematic calibration of serial and parallel robots based on finite
+  and instantaneous screw theory.
+\newblock {\em IEEE Transactions on Robotics}, 36(3):816--834, 2020.
+
 \bibitem{taghirad2013parallel}
 Hamid~D Taghirad.
 \newblock {\em Parallel robots: mechanics and control}.

@@ -417,7 +417,7 @@ A serially connected 3 DOF robotic leg with 2 orthogonally intersecting revolute
 	
 	The end-effector point E lives in a three-dimensional Euclidean space, $\mathbb{R}^3$. More specifically, it traces out a subset of $\mathbb{R}^3$ that forms the workspace of the robot.
 	
-	\subsection*{2. Forward Kinematics using Product of Exponentials (PoE)}
+	\subsection*{2. Forward Kinematics using Product of Exponentials (PoE)} \label{sec:SE3}
 
 Based on Kevin-Lynch's Modern Robotics book \cite{lynch2017modern} the forward kinematics for our 3 DOF robotic leg can be derived using the Product of Exponentials (PoE) formula. This method offers an elegant and intuitive approach, particularly suitable for open kinematic chains like our robot leg. Let's go through the process step-by-step:
 
@@ -734,13 +734,247 @@ By combining forward kinematics, Jacobian analysis, and inverse kinematics valid
 
 For detailed implementation and results, please refer to the Jupyter notebook \texttt{E4.ipynb}.
 \end{solution}
-\subsection{Exercise 5}
-\lipsum[9]
+
+\subsection{Exercise 5: Slider-Crank Linkage Analysis}
+
+Consider a slider-crank linkage of type 1-RRPR shown in Figure 3, which involves a linear actuator and three revolute joints. Let $q_1$ denote the output joint angle and $q_3$ denote the input prismatic joint displacement.
+
+ \begin{figure}[h]
+ 	\centering
+ 	\includegraphics[width=0.6\textwidth]{slider_crank_linkage.pdf}
+ 	\caption{Slider-crank linkage (1-RRPR)}
+ 	\label{fig:slider_crank}
+ \end{figure}
+
+% \subsubsection*{1. Forward Kinematics}
+
+% The expression for forward kinematics, $q_1 = f(q_3)$, is:
+
+% \begin{equation}
+% q_1 = \arccos\left(\frac{L_1^2 + L_2^2 - q_3^2}{2L_1L_2}\right)
+% \end{equation}
+
+% where $L_1$ and $L_2$ are the lengths of the two links.
+
+% \subsubsection*{2. Inverse Kinematics}
+
+% The expression for inverse kinematics, $q_3 = f^{-1}(q_1)$, is:
+
+% \begin{equation}
+% q_3 = \sqrt{L_1^2 + L_2^2 - 2L_1L_2\cos(q_1)}
+% \end{equation}
+
+% \subsubsection*{3. Verification Program}
+
+% A Python program to verify the forward and inverse kinematics:
+
+% \begin{lstlisting}[language=Python]
+% import numpy as np
+% import matplotlib.pyplot as plt
+
+% def forward_kinematics(q3, L1, L2):
+% return np.arccos((L1**2 + L2**2 - q3**2) / (2*L1*L2))
+
+% def inverse_kinematics(q1, L1, L2):
+% return np.sqrt(L1**2 + L2**2 - 2*L1*L2*np.cos(q1))
+
+% def visualize(q1, q3, L1, L2):
+% x1, y1 = L1*np.cos(q1), L1*np.sin(q1)
+% x2, y2 = q3, 0
+% plt.figure(figsize=(8, 6))
+% plt.plot([0, x1, x2], [0, y1, y2], 'bo-')
+% plt.xlim(-L1-L2, L1+L2)
+% plt.ylim(-L1-L2, L1+L2)
+% plt.grid(True)
+% plt.title(f'Slider-Crank: q1 = {q1:.2f}, q3 = {q3:.2f}')
+% plt.show()
+
+% # Verification
+% L1, L2 = 1, 1.5
+% for _ in range(3):
+% q3 = np.random.uniform(0.5, L1+L2)
+% q1 = forward_kinematics(q3, L1, L2)
+% q3_inv = inverse_kinematics(q1, L1, L2)
+% print(f'q3: {q3:.4f}, q1: {q1:.4f}, q3_inv: {q3_inv:.4f}')
+% visualize(q1, q3, L1, L2)
+% \end{lstlisting}
+
 
 \begin{solution}
-    \lipsum[10]
-\end{solution}
+	
+    \subsection*{General Approach to Parallel Mechanisms}
+    
+    Before addressing the specific slider-crank linkage, let's discuss a general approach \cite{lynch2017modern,sun2020kinematic} to analyzing parallel mechanisms. This method can be applied to a wide range of parallel mechanisms, including the one in our problem.
+    
+    \subsubsection*{General Parallel Mechanisms}
+    
+    Consider a parallel mechanism where the fixed and moving platforms are connected by multiple open chains, as illustrated in Figure \ref{fig:general_parallel_mechanism}.
+    
+    \begin{center}
+    \includegraphics[width=0.6\textwidth]{general_parallel_mechanism.pdf}
+    \captionof{figure}{General Parallel Mechanism with Multiple Open Chains \cite{lynch2017modern}}
+    \label{fig:general_parallel_mechanism}
+    \end{center}
+    
+    \subsubsection*{Kinematic Formulation}
+    
+    Let the configuration of the moving platform be given by $T_{sb} \in SE(3)$. Denote the forward kinematics of each chain by $T_i(q_i)$, where $q_i$ represents the joint variables for the $i$-th chain.
+    
+    \subsubsection*{Loop-Closure Conditions}
+    
+    The loop-closure conditions can be written as:
+    
+    \begin{equation}
+    T_{sb} = T_1(q_1) = T_2(q_2) = \cdots = T_n(q_n)
+    \end{equation}
+    
+    \subsubsection*{Constraint Equations}
+    
+    By equating the transformations, we obtain a set of constraint equations. The number of independent equations determines the degrees of freedom of the mechanism.
+    
+    \subsubsection*{Forward and Inverse Kinematics}
+    
+    The forward and inverse kinematics problems involve solving these constraint equations for unknown joint variables or the platform configuration, respectively.
+    
+    \subsection*{Application to the Slider-Crank Linkage}
+    
+    Now, let's apply this general approach to the specific slider-crank linkage of type 1-RRPR shown in Figure 3.
+    
+    \begin{center}
+    \includegraphics[width=0.6\textwidth]{slider_crank_linkage.pdf}
+    \captionof{figure}{Slider-crank linkage (1-RRPR)}
+    \label{fig:slider_crank}
+    \end{center}
+    
+    \subsubsection*{Forward Kinematics Analysis}
 
+The forward kinematics of the slider-crank linkage (1-RRPR) was analyzed using a symbolic computation approach done by Symforce \cite{martiros2022symforce}.\paragraph{Detailed Calculations:} The complete derivation and step-by-step calculations for the forward kinematics can be found in the Jupyter notebook \texttt{E5.ipynb} located in the Code folder. This notebook provides a comprehensive breakdown of the symbolic computations, including the definition of the kinematic chains, application of the loop-closure condition, and the solution process for obtaining the forward kinematics expressions. The analysis yielded the following results:
+
+\paragraph{Method:} Base on Figure \ref{fig:slider_crank} The mechanism was modeled using two kinematic chains:
+\begin{itemize}
+    \item Chain 1: Represents the revolute joint at the base and the connecting link.
+    \item Chain 2: Represents the prismatic joint and the second revolute joint.
+\end{itemize}
+
+A loop-closure condition was applied to ensure that both chains meet at the same point.
+
+\paragraph{Results:} The forward kinematics solution provides two possible configurations for the output joint angle $q_1$ in terms of the input prismatic joint displacement $q_3$:
+
+\begin{equation}
+q_1 = \begin{cases}
+    \pi - \arcsin\left(\frac{q_3 \sin(q_2)}{l_2}\right) \\[10pt]
+    \arcsin\left(\frac{q_3 \sin(q_2)}{l_2}\right)
+\end{cases}
+\end{equation}
+
+where:
+\begin{itemize}
+    \item $q_1$ is the output joint angle (revolute)
+    \item $q_2$ is an intermediate joint angle
+    \item $q_3$ is the input prismatic joint displacement
+    \item $l_2$ is the length of the second link
+\end{itemize}
+
+\paragraph{Interpretation:}
+\begin{itemize}
+    \item The two solutions represent the two possible configurations of the mechanism for a given input $q_3$.
+    \item The first solution ($\pi - \arcsin(\cdot)$) corresponds to the "elbow-up" configuration.
+    \item The second solution ($\arcsin(\cdot)$) corresponds to the "elbow-down" configuration.
+    \item The solution depends on the ratio of $q_3 \sin(q_2)$ to $l_2$, which represents the vertical displacement of the slider relative to the length of the second link.
+\end{itemize}
+
+\paragraph{Limitations:}
+\begin{itemize}
+    \item The solution assumes $\left|\frac{q_3 \sin(q_2)}{l_2}\right| \leq 1$. If this condition is not met, the mechanism is in a singular configuration or the input is invalid.
+    \item The analysis doesn't explicitly handle singularities, which occur when the mechanism is fully extended or folded.
+\end{itemize}
+
+This forward kinematics solution provides a comprehensive understanding of the slider-crank mechanism's behavior, allowing for the prediction of the output angle given the input displacement.
+    
+    \subsubsection*{2. Inverse Kinematics}
+    
+%    Similarly, the expression for inverse kinematics, $q_3 = f^{-1}(q_1)$, is derived as:
+%    
+%    \begin{equation}
+%    q_3 = \sqrt{L_1^2 + L_2^2 - 2L_1L_2\cos(q_1)}
+%    \end{equation}
+    
+The inverse kinematics of the slider-crank linkage (1-RRPR) was analyzed using python's symbolic computation with Symforce \cite{martiros2022symforce} \paragraph{Detailed Calculations:} The complete derivation and step-by-step calculations for the forward kinematics can be found in the Jupyter notebook \texttt{E5.ipynb} located in the Code folder. This notebook provides a comprehensive breakdown of the symbolic computations, including the definition of the kinematic chains, application of the loop-closure condition, and the solution process for obtaining the forward kinematics expressions. The analysis yielded the following results:
+
+\paragraph{Method:} The inverse kinematics problem involves finding the input prismatic joint displacement $q_3$ given the output revolute joint angle $q_1$. The solution was derived using the loop-closure condition and solving the resulting equations.
+
+\paragraph{Results:} The inverse kinematics solution provides two possible configurations for the input prismatic joint displacement $q_3$ in terms of the output joint angle $q_1$:
+
+\begin{equation}
+q_3 = \begin{cases}
+    -\frac{l_2 \sin(q_1)}{\sin(2\alpha_1)} \\[10pt]
+    \frac{l_2 \sin(q_1)}{\sin(2\alpha_2)}
+\end{cases}
+\end{equation}
+
+where:
+\begin{align*}
+\alpha_1 &= \arctan\left(-\frac{l_1} {\sin(q_1)l_2} + \frac{1}{\tan(q_1)} + \frac{\sqrt{l_1^2 - 2l_1l_2\cos(q_1) + l_2^2}}{l_2 \sin(q_1)}\right) \\[10pt]
+\alpha_2 &= \arctan\left(-\frac{l_1} {\sin(q_1)l_2} - \frac{1}{\tan(q_1)} + \frac{\sqrt{l_1^2 - 2l_1l_2\cos(q_1) + l_2^2}}{l_2 \sin(q_1)}\right)
+\end{align*}
+
+and:
+\begin{itemize}
+    \item $q_1$ is the output joint angle (revolute)
+    \item $q_3$ is the input prismatic joint displacement
+    \item $l_1$ and $l_2$ are the lengths of the first and second links, respectively
+\end{itemize}
+
+\paragraph{Interpretation:}
+\begin{itemize}
+    \item The two solutions represent the two possible configurations of the mechanism for a given output angle $q_1$.
+    \item The solutions involve complex trigonometric expressions, reflecting the nonlinear nature of the mechanism's kinematics.
+    \item The $\alpha_1$ and $\alpha_2$ terms represent intermediate angles in the mechanism's configuration.
+    \item The solution depends on the ratio of trigonometric functions of these intermediate angles to $l_2 \sin(q_1)$, which relates to the mechanism's geometry.
+\end{itemize}
+
+\paragraph{Limitations and Considerations:}
+\begin{itemize}
+    \item The solution assumes $\sin(q_1) \neq 0$. When $\sin(q_1) = 0$ (i.e., $q_1 = 0$ or $\pi$), the mechanism is in a singular configuration.
+    \item The expressions under the square roots must be non-negative for real solutions to exist. This condition defines the feasible workspace of the mechanism.
+    \item The arctan function should be implemented as atan2 in most programming languages to handle all quadrants correctly.
+    \item Numerical stability should be considered when implementing these solutions, especially near singular configurations.
+\end{itemize}
+
+
+    
+    \subsubsection*{4. Maximum Output Angular Velocity}
+    
+    Using the principle of virtual work and the loop-closure condition, we derive:
+    
+    \begin{equation}
+    \dot{q}_{1max} = \frac{\dot{q}_{3max} \cdot q_3}{L_1L_2\sin(q_1)}
+    \end{equation}
+    
+    where $\dot{q}_{3max}$ is the maximum velocity of the actuator.
+    
+    \subsubsection*{5. Maximum Output Torque}
+    
+    Similarly, for the maximum output torque:
+    
+    \begin{equation}
+    \tau_{max} = f_{max} \cdot \frac{L_1L_2\sin(q_1)}{q_3}
+    \end{equation}
+    
+    where $f_{max}$ is the maximum force available at the actuator.
+    
+    \subsubsection*{6. Singular Configurations}
+    
+    The mechanism has two singular configurations:
+    \begin{itemize}
+        \item When $q_1 = 0$ or $\pi$, i.e., when the two links are fully extended or folded.
+        \item When $q_3 = L_1 + L_2$, i.e., when the prismatic joint is at its maximum extension.
+    \end{itemize}
+    
+    These configurations are identified by analyzing the Jacobian of the mechanism.
+    
+    This analysis demonstrates how the general approach to parallel mechanisms can be applied to specific cases like the slider-crank linkage, yielding detailed kinematic and dynamic information about the mechanism.
+    \end{solution}
 \subsection{Exercise 6}
 \lipsum[11]
 
