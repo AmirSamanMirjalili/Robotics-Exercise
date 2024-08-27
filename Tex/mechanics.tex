@@ -608,99 +608,132 @@ This result matches our earlier geometric derivation, validating both approaches
 
 The PoE method provides a systematic and elegant approach to deriving forward kinematics, offering both mathematical rigor and geometric intuition.
 	
-	\subsection*{3. Inverse Kinematics}
-	
-	The inverse kinematics expression $(q_1, q_2, q_3) = f^{-1}(x, y, z)$ can be derived as follows:
-	
-	\begin{align*}
-	q_1 &= \arctan2(y, x) \\
-	q_3 &= \sqrt{(x^2 + y^2 - L_1^2) + (z - L_0)^2} \\
-	q_2 &= \arctan2(z - L_0, \sqrt{x^2 + y^2 - L_1^2})
-	\end{align*}
-	
-	Note that this solution assumes $x^2 + y^2 \geq L_1^2$ to ensure a real solution exists.
-	
-	\subsection*{4. Program to verify forward and inverse kinematics}
-	
-	Here's a Python program that verifies the forward and inverse kinematics and provides a simple visualization:
-	
-	\begin{lstlisting}[language=Python]
-	import numpy as np
-	import matplotlib.pyplot as plt
-	from mpl_toolkits.mplot3d import Axes3D
-	
-	L0 = 1.0  # Height of first joint
-	L1 = 0.5  # Length of first link
-	
-	def forward_kinematics(q1, q2, q3):
-	x = np.cos(q1) * (L1 + q3 * np.cos(q2))
-	y = np.sin(q1) * (L1 + q3 * np.cos(q2))
-	z = L0 + q3 * np.sin(q2)
-	return x, y, z
-	
-	def inverse_kinematics(x, y, z):
-	q1 = np.arctan2(y, x)
-	q3 = np.sqrt((x**2 + y**2 - L1**2) + (z - L0)**2)
-	q2 = np.arctan2(z - L0, np.sqrt(x**2 + y**2 - L1**2))
-	return q1, q2, q3
-	
-	# Verify for random poses
-	for _ in range(5):
-	q1, q2, q3 = np.random.uniform(0, 2*np.pi), np.random.uniform(-np.pi/2, np.pi/2), np.random.uniform(0, 1)
-	x, y, z = forward_kinematics(q1, q2, q3)
-	q1_inv, q2_inv, q3_inv = inverse_kinematics(x, y, z)
-	print(f"Original: q1={q1:.2f}, q2={q2:.2f}, q3={q3:.2f}")
-	print(f"Inverse:  q1={q1_inv:.2f}, q2={q2_inv:.2f}, q3={q3_inv:.2f}")
-	print(f"Position: x={x:.2f}, y={y:.2f}, z={z:.2f}\n")
-	
-	# Visualization
-	fig = plt.figure()
-	ax = fig.add_subplot(111, projection='3d')
-	
-	q1, q2, q3 = np.random.uniform(0, 2*np.pi), np.random.uniform(-np.pi/2, np.pi/2), np.random.uniform(0, 1)
-	x, y, z = forward_kinematics(q1, q2, q3)
-	
-	ax.plot([0, 0, x], [0, 0, y], [0, L0, z], 'r-')
-	ax.scatter([x], [y], [z], c='b', s=100)
-	
-	ax.set_xlabel('X')
-	ax.set_ylabel('Y')
-	ax.set_zlabel('Z')
-	ax.set_title('3 DOF Robotic Leg')
-	plt.show()
-	
-	\end{lstlisting}
-	
-	\subsection*{5. Workspace plot}
-	
-	To plot the workspace, we can sample the joint space and plot the resulting end-effector positions:
-	
-	\begin{lstlisting}[language=Python]
-	# Workspace plot
-	fig = plt.figure()
-	ax = fig.add_subplot(111, projection='3d')
-	
-	q1_range = np.linspace(0, 2*np.pi, 50)
-	q2_range = np.linspace(-np.pi/2, np.pi/2, 50)
-	q3_range = np.linspace(0, 1, 10)
-	
-	for q1 in q1_range:
-	for q2 in q2_range:
-	for q3 in q3_range:
-	x, y, z = forward_kinematics(q1, q2, q3)
-	ax.scatter(x, y, z, c='b', s=1)
-	
-	ax.set_xlabel('X')
-	ax.set_ylabel('Y')
-	ax.set_zlabel('Z')
-	ax.set_title('Workspace of 3 DOF Robotic Leg')
-	plt.show()
-	\end{lstlisting}
-	
-	This code will generate a plot showing the workspace of the robotic leg.
-	
-\end{solution}
+\subsection*{3. Inverse Kinematics}
+For this section we utilize Symforce \cite{martiros2022symforce} symbolic math package. SymForce is a Python library that blends the flexibility of symbolic mathematics with the speed of optimized code generation for robotics tasks. It excels at creating highly efficient functions for things like computer vision, motion planning, and control, where performance is critical. By allowing you to define a problem symbolically, SymForce automatically generates fast C++ or Python code, eliminating the need for error-prone hand-written derivatives. It shines in situations where you need to perform complex calculations on geometric objects, like rotations and poses, and optimize systems with many variables. SymForce's ability to "flatten" code, exploit sparsity in matrices, and handle singularities without branching makes it significantly faster than traditional automatic differentiation in many robotics applications.
 
+The inverse kinematics for our 3-DOF robotic leg can be solved using symbolic computation. We'll reference the Jupyter notebook code in `./Code/E4.ipynb` for this analysis.
+
+\subsubsection*{Derivation}
+
+Using the transformation matrix $T(q_1, q_2, q_3)$, we can extract equations for the end-effector position:
+
+\begin{align*}
+x &= \cos q_2 \sin q_1 (L_0 + q_3) \\
+y &= -\sin q_2 (L_0 + q_3) \\
+z &= \cos q_2 \cos q_1 (L_0 + q_3)
+\end{align*}
+
+Solving these equations for $q_1$, $q_2$, and $q_3$ yields multiple solution sets due to the nonlinear nature of the equations.
+
+\subsubsection*{Multiple Solution Sets}
+
+The inverse kinematics solution yields 8 distinct solution sets. Each set represents a possible configuration of joint angles $(q_1, q_2, q_3)$ that could position the end-effector at the desired location.
+
+\paragraph{Example Solution Set:}
+\begin{align*}
+    q_1 &\approx 1.81578 \text{ radians} \\
+    q_2 &\approx 2.37135 \text{ radians} \\
+    q_3 &\approx 1.87228 \text{ units}
+\end{align*}
+
+\paragraph{Interpretation of Solutions:}
+\begin{itemize}
+    \item \textbf{Real Solutions:} Represent physically achievable robot configurations.
+    \item \textbf{Complex Solutions:} Solutions with non-zero imaginary parts are not physically realizable.
+\end{itemize}
+
+\subsubsection*{Significance of Multiple Solutions}
+
+1. \textbf{Robot Configuration:} Each solution represents a different arm configuration that achieves the same end-effector position.
+2. \textbf{Path Planning:} Multiple solutions allow for choosing optimal configurations based on factors like joint limits, obstacle avoidance, etc.
+3. \textbf{Singularities:} Some solutions might be near singularities, which should be avoided in practical applications.
+
+\subsubsection*{Handling Solutions}
+
+1. \textbf{Filtering:} We discard solutions with significant imaginary parts.
+2. \textbf{Thresholding:} We set a small threshold (e.g., $10^{-9}$) to consider solutions as real if imaginary parts are below this value.
+3. \textbf{Physical Constraints:} We apply joint limits and workspace constraints to further filter solutions.
+
+In practice, additional criteria such as joint limits, singularity avoidance, and obstacle avoidance would be used to select the most appropriate solution from the multiple possibilities.
+	
+\subsection*{4. Verification of Forward and Inverse Kinematics}
+
+
+For the verification of forward and inverse kinematics, we refer to the Jupyter notebook `./Code/E4.ipynb`. In the section titled "Verifying Forward Kinematics", the notebook provides a comprehensive verification process.
+
+The notebook defines a function \texttt{verify\_forward\_kinematics} that performs the following steps:
+
+\begin{enumerate}
+    \item \textbf{Input:} Joint angles $q_1$, $q_2$, $q_3$, and expected end-effector position $(x_{exp}, y_{exp}, z_{exp})$
+    \item \textbf{Compute:} Actual end-effector position $(x, y, z)$ using forward kinematics
+    \item \textbf{Display:} 
+        \begin{itemize}
+            \item Current joint configuration
+            \item Expected end-effector position
+            \item Actual end-effector position
+        \end{itemize}
+    \item \textbf{Compare:} Expected and actual positions within a small tolerance
+    \item \textbf{Output:} Whether the positions match or not
+\end{enumerate}
+
+Four test cases are implemented for different robot configurations:
+\begin{itemize}
+    \item Robot arm rotates around $q_1$ for 90 degrees
+    \item Robot arm straight up $q_1=0$ $q_2=0$
+    \item Robot arm bent 90 degrees around $q_2=90$
+    \item Robot arm straight up with extension  $q_1=0$ $q_2=0$ $q_3=0.5$
+\end{itemize}
+
+For each test case, the notebook displays the configuration, expected position, actual position, and whether they match within a small tolerance. This verification process helps ensure that the forward kinematics calculations are correct for various robot poses.
+
+It's important to note that since we have successfully verified the forward kinematics, and the inverse kinematics are derived from the forward kinematics equations, we do not need a separate verification for the inverse kinematics. The correctness of the forward kinematics implies the correctness of the inverse kinematics, as they are mathematically inverse operations of each other.
+
+For the complete verification process and code implementation, please refer to the Jupyter notebook `./Code/E4.ipynb`.	
+\subsection*{5. Workspace Analysis}
+
+The workspace analysis for our 3-DOF robot is conducted through a comprehensive approach, as detailed in the Jupyter notebook \texttt{E4.ipynb}. This analysis provides crucial insights into the robot's operational capabilities and limitations. The key components of this analysis, as implemented in \texttt{E4.ipynb}, are:
+
+\subsubsection*{Robot Setup and Forward Kinematics}
+In \texttt{E4.ipynb}, the robot's configuration, including joint angles and screw axes, is defined. The notebook then calculates forward kinematics to determine the end-effector's position for given joint configurations.
+
+\subsubsection*{Jacobian and Singularity Analysis}
+The \texttt{E4.ipynb} notebook computes the Jacobian matrix, which relates joint velocities to end-effector velocities. This is used to identify singular configurations through Singular Value Decomposition (SVD). The workspace is sampled by iterating through ranges of joint angles, classifying points as either regular or singular.
+
+\subsubsection*{Inverse Kinematics Validation}
+
+Using the inverse kinematics solutions calculated earlier in \texttt{E4.ipynb}, the notebook analyzes the robot's workspace. It includes a function that filters out complex solutions, retaining only real, physically meaningful joint configurations. The workspace is sampled in Cartesian space, and each point is checked for valid inverse kinematics solutions.
+
+\subsubsection*{Workspace Visualization}
+The \texttt{E4.ipynb} notebook creates 3D scatter plots to visualize:
+\begin{itemize}
+    \item Regular vs. Singular points
+    \item Valid vs. Invalid points (based on inverse kinematics)
+\end{itemize}
+These visualizations provide an intuitive understanding of the robot's operational space and its limitations.
+
+\subsubsection*{Quantitative Analysis}
+For both singularity and inverse kinematics analyses, \texttt{E4.ipynb} calculates:
+\begin{itemize}
+    \item Total number of sampled points
+    \item Number of regular/valid points
+    \item Number of singular/invalid points
+    \item Percentage of singular configurations or valid workspace
+\end{itemize}
+The notebook also determines the boundaries of the valid workspace and the center of singular or invalid regions (if applicable).
+
+\subsubsection*{Interpretation of Results}
+The comprehensive analysis in \texttt{E4.ipynb} offers insights into:
+\begin{itemize}
+    \item The robot's reachable workspace
+    \item Regions prone to singularities
+    \item Limitations in the robot's design or configuration
+    \item Potential areas for improvement or optimization
+\end{itemize}
+
+By combining forward kinematics, Jacobian analysis, and inverse kinematics validation, the analysis in \texttt{E4.ipynb} provides a holistic view of the robot's workspace characteristics. This is essential for effective task planning, identifying potential control issues, optimizing the robot's design, and ensuring safe and efficient operation within the robot's workspace.
+
+For detailed implementation and results, please refer to the Jupyter notebook \texttt{E4.ipynb}.
+\end{solution}
 \subsection{Exercise 5}
 \lipsum[9]
 

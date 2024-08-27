@@ -32,6 +32,12 @@ Kevin~M Lynch and Frank~C Park.
 \newblock {\em Modern robotics}.
 \newblock Cambridge University Press, 2017.
 
+\bibitem{martiros2022symforce}
+Hayk Martiros, Aaron Miller, Nathan Bucki, Bradley Solliday, Ryan Kennedy, Jack
+  Zhu, Tung Dang, Dominic Pattison, Harrison Zheng, Teo Tomic, et~al.
+\newblock Symforce: Symbolic computation and code generation for robotics.
+\newblock {\em arXiv preprint arXiv:2204.07889}, 2022.
+
 \bibitem{taghirad2013parallel}
 Hamid~D Taghirad.
 \newblock {\em Parallel robots: mechanics and control}.
