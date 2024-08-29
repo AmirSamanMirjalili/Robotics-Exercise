@@ -848,48 +848,52 @@ Consider a slider-crank linkage of type 1-RRPR shown in Figure 3, which involves
     
     \subsubsection*{Forward Kinematics Analysis}
 
-The forward kinematics of the slider-crank linkage (1-RRPR) was analyzed using a symbolic computation approach done by Symforce \cite{martiros2022symforce}.\paragraph{Detailed Calculations:} The complete derivation and step-by-step calculations for the forward kinematics can be found in the Jupyter notebook \texttt{E5.ipynb} located in the Code folder. This notebook provides a comprehensive breakdown of the symbolic computations, including the definition of the kinematic chains, application of the loop-closure condition, and the solution process for obtaining the forward kinematics expressions. The analysis yielded the following results:
+The forward kinematics of the slider-crank linkage (1-RRPR) was analyzed using a symbolic computation approach. The analysis yielded the following results:
 
-\paragraph{Method:} Base on Figure \ref{fig:slider_crank} The mechanism was modeled using two kinematic chains:
-\begin{itemize}
-    \item Chain 1: Represents the revolute joint at the base and the connecting link.
-    \item Chain 2: Represents the prismatic joint and the second revolute joint.
-\end{itemize}
-
-A loop-closure condition was applied to ensure that both chains meet at the same point.
+\paragraph{Method:} The mechanism was modeled using two kinematic chains and a loop-closure condition was applied to ensure that both chains meet at the same point.
 
 \paragraph{Results:} The forward kinematics solution provides two possible configurations for the output joint angle $q_1$ in terms of the input prismatic joint displacement $q_3$:
 
 \begin{equation}
 q_1 = \begin{cases}
-    \pi - \arcsin\left(\frac{q_3 \sin(q_2)}{l_2}\right) \\[10pt]
-    \arcsin\left(\frac{q_3 \sin(q_2)}{l_2}\right)
+    2\arctan\left(\sqrt{\frac{l_1^2 + 2l_1l_2 + l_2^2 - q_3^2}{-l_1^2 + 2l_1l_2 - l_2^2 + q_3^2}}\right) \\[10pt]
+    -2\arctan\left(\sqrt{\frac{-l_1^2 + 2l_1l_2 + l_2^2 - q_3^2}{l_1^2 - 2l_1l_2 + l_2^2 - q_3^2}}\right)
 \end{cases}
 \end{equation}
 
 where:
 \begin{itemize}
     \item $q_1$ is the output joint angle (revolute)
-    \item $q_2$ is an intermediate joint angle
     \item $q_3$ is the input prismatic joint displacement
-    \item $l_2$ is the length of the second link
+    \item $l_1$ and $l_2$ are the lengths of the first and second links, respectively
 \end{itemize}
 
 \paragraph{Interpretation:}
 \begin{itemize}
     \item The two solutions represent the two possible configurations of the mechanism for a given input $q_3$.
-    \item The first solution ($\pi - \arcsin(\cdot)$) corresponds to the "elbow-up" configuration.
-    \item The second solution ($\arcsin(\cdot)$) corresponds to the "elbow-down" configuration.
-    \item The solution depends on the ratio of $q_3 \sin(q_2)$ to $l_2$, which represents the vertical displacement of the slider relative to the length of the second link.
+    \item The first solution corresponds to the "elbow-up" configuration.
+    \item The second solution corresponds to the "elbow-down" configuration.
+    \item The solutions involve the ratio of differences of squared lengths, reflecting the geometric constraints of the mechanism.
 \end{itemize}
 
 \paragraph{Limitations:}
 \begin{itemize}
-    \item The solution assumes $\left|\frac{q_3 \sin(q_2)}{l_2}\right| \leq 1$. If this condition is not met, the mechanism is in a singular configuration or the input is invalid.
-    \item The analysis doesn't explicitly handle singularities, which occur when the mechanism is fully extended or folded.
+    \item The expressions under the square roots must be non-negative for real solutions to exist. This condition defines the feasible workspace of the mechanism.
+    \item The solution assumes $l_1^2 - 2l_1l_2 + l_2^2 - q_3^2 \neq 0$ and $-l_1^2 + 2l_1l_2 - l_2^2 + q_3^2 \neq 0$. When these conditions are not met, the mechanism is in a singular configuration.
+    \item The arctan function should be implemented as atan2 in most programming languages to handle all quadrants correctly.
 \end{itemize}
 
-This forward kinematics solution provides a comprehensive understanding of the slider-crank mechanism's behavior, allowing for the prediction of the output angle given the input displacement.
+\paragraph{Geometric Interpretation:}
+The solutions can be interpreted geometrically:
+\begin{itemize}
+    \item The numerator $l_1^2 + 2l_1l_2 + l_2^2 - q_3^2$ represents the square of the sum of the link lengths minus the square of the input displacement.
+    \item The denominator $-l_1^2 + 2l_1l_2 - l_2^2 + q_3^2$ represents the square of the difference of the link lengths minus the square of the input displacement.
+    \item The ratio of these terms, when square-rooted, gives the tangent of half the output angle, which is then doubled to get the full angle.
+\end{itemize}
+
+This forward kinematics solution provides a comprehensive understanding of the slider-crank mechanism's behavior, allowing for the prediction of the output angle given the input displacement. The form of the solution highlights the nonlinear nature of the mechanism's kinematics and the importance of considering multiple solutions in parallel mechanisms.
+
+\paragraph{Detailed Calculations:} The complete derivation and step-by-step calculations for the forward kinematics can be found in the Jupyter notebook \texttt{E5.ipynb} located in the Code folder. This notebook provides a comprehensive breakdown of the symbolic computations, including the definition of the kinematic chains, application of the loop-closure condition, and the solution process for obtaining these forward kinematics expressions.
     
     \subsubsection*{2. Inverse Kinematics}
     
@@ -943,43 +947,126 @@ and:
 
 
     
-    \subsubsection*{4. Maximum Output Angular Velocity}
+\subsubsection*{4. Maximum Output Angular Velocity}
+
+To find an expression for the maximum output angular velocity $\dot{q}_{1max}$ given the maximum velocity $\dot{q}_{3max}$ available at the actuator, we used symbolic computation in the Jupyter notebook E5.ipynb. The process and results are as follows:
+
+\paragraph{Method:}
+\begin{itemize}
+	\item We defined time-dependent variables for $q_1$, $q_2$, $q_3$, and $l_2$.
+	\item Using the forward kinematics solutions, we calculated the Jacobians $\frac{\partial q_1}{\partial q_3}$ for both solutions.
+	\item The maximum output angular velocity was then calculated as $\dot{q}_{1max} = |\frac{\partial q_1}{\partial q_3}| \cdot \dot{q}_{3max}$.
+\end{itemize}
+
+\paragraph{Results:}
+The symbolic computation yielded the following expressions for $\dot{q}_{1max}$:
+
+For both solutions:
+
+\begin{equation} \label{eq:jacob1}
+\dot{q}_{1max}=2\dot{q}_{3max}\left|\frac{q_3(t)\cdot \sqrt{\frac{l_1^2 - 2l_1l_2(t) + l_2^2(t) - q_3^2(t)}{l_1^2 + 2l_1l_2(t) + l_2^2(t) - q_3^2(t)}}}{ {l_1^2 - 2l_1l_2(t) + l_2^2(t) - q_3^2(t)}} \right|
+\end{equation}
+
+\paragraph{Interpretation:}
+\begin{itemize}
+	\item The expression for $\dot{q}_{1max}$ is the same for both solutions of the forward kinematics, indicating that the maximum output angular velocity is independent of which configuration the mechanism is in.
+	\item The maximum output angular velocity depends on the current state of the mechanism (represented by $q_3(t)$ and $l_2(t)$) and the geometric parameters ($l_1$).
+	\item The expression involves ratios of quadratic terms in $q_3(t)$ and $l_2(t)$, reflecting the nonlinear nature of the mechanism's kinematics.
+	\item The absolute value in the expression ensures that $\dot{q}_{1max}$ is always positive, as it represents a magnitude.
+\end{itemize}
+
+\paragraph{Limitations and Considerations:}
+\begin{itemize}
+	\item The expression becomes undefined when $l_1^2 - 2l_1l_2(t) + l_2^2(t) - q_3^2(t) = 0$, which corresponds to a singular configuration of the mechanism.
+	\item The time dependence of $l_2$ ($l_2(t)$) in the derived expression suggests that the analysis considered potential variations in link lengths, which might not be applicable in a rigid mechanism. For a fixed-length mechanism, $l_2$ would be constant.
+	\item The actual maximum velocity achievable may be lower due to physical constraints not captured in this kinematic analysis, such as joint limits or dynamic effects.
+\end{itemize}
+
+\paragraph{Detailed Calculations:}
+The complete derivation, including the symbolic manipulation and intermediate steps, can be found in the Jupyter notebook E5.ipynb in the Code folder. This notebook provides a step-by-step breakdown of the calculation process using the SymForce library for symbolic mathematics.
     
-    Using the principle of virtual work and the loop-closure condition, we derive:
-    
-    \begin{equation}
-    \dot{q}_{1max} = \frac{\dot{q}_{3max} \cdot q_3}{L_1L_2\sin(q_1)}
-    \end{equation}
-    
-    where $\dot{q}_{3max}$ is the maximum velocity of the actuator.
-    
-    \subsubsection*{5. Maximum Output Torque}
-    
-    Similarly, for the maximum output torque:
-    
-    \begin{equation}
-    \tau_{max} = f_{max} \cdot \frac{L_1L_2\sin(q_1)}{q_3}
-    \end{equation}
-    
-    where $f_{max}$ is the maximum force available at the actuator.
-    
-    \subsubsection*{6. Singular Configurations}
-    
-    The mechanism has two singular configurations:
-    \begin{itemize}
-        \item When $q_1 = 0$ or $\pi$, i.e., when the two links are fully extended or folded.
-        \item When $q_3 = L_1 + L_2$, i.e., when the prismatic joint is at its maximum extension.
-    \end{itemize}
-    
-    These configurations are identified by analyzing the Jacobian of the mechanism.
-    
-    This analysis demonstrates how the general approach to parallel mechanisms can be applied to specific cases like the slider-crank linkage, yielding detailed kinematic and dynamic information about the mechanism.
-    \end{solution}
+\subsubsection*{5. Maximum Output Torque}
+
+Given that the maximum force available at the actuator (prismatic joint q3) is $f_{max}$, we need to find an expression for the maximum output torque $\tau_{max}$ at the revolute joint q1.
+
+To derive this relationship, we use the principle of virtual work and the Jacobian of the mechanism.
+
+\paragraph{Method:}
+\begin{itemize}
+    \item Let $J$ be the Jacobian that relates the velocity of q3 to the angular velocity of q1: $\dot{q}_1 = J \dot{q}_3$
+    \item By the principle of virtual work, we have: $\tau_1 \delta q_1 = f_3 \delta q_3$
+    \item Substituting $\delta q_1 = J \delta q_3$, we get: $\tau_1 J \delta q_3 = f_3 \delta q_3$
+    \item This implies: $\tau_1 = \frac{f_3}{J}$
+\end{itemize}
+
+\paragraph{Expression for Maximum Output Torque:}
+Given the maximum force $f_{max}$ at the actuator, the maximum output torque is:
+
+\begin{equation}
+    \tau_{max} = \frac{f_{max}}{J} = f_{max} \cdot \frac{1}{J}
+\end{equation}
+
+where $J$ is the Jacobian we derived earlier \eqref{eq:jacob1}:
+
+\begin{equation}
+    J = 2\left|\frac{q_3(t)\cdot \sqrt{\frac{l_1^2 - 2l_1l_2(t) + l_2^2(t) - q_3^2(t)}{l_1^2 + 2l_1l_2(t) + l_2^2(t) - q_3^2(t)}}}{ {l_1^2 - 2l_1l_2(t) + l_2^2(t) - q_3^2(t)}} \right|
+\end{equation}
+
+Substituting this into our expression for $\tau_{max}$:
+
+\begin{equation}
+    \tau_{max} = 2f_{max}\cdot\left|\frac{ {l_1^2 - 2l_1l_2(t) + l_2^2(t) - q_3^2(t)}}{q_3(t)\cdot \sqrt{\frac{l_1^2 - 2l_1l_2(t) + l_2^2(t) - q_3^2(t)}{l_1^2 + 2l_1l_2(t) + l_2^2(t) - q_3^2(t)}}} \right|
+\end{equation}
+
+\paragraph{Interpretation:}
+\begin{itemize}
+    \item The maximum output torque $\tau_{max}$ is directly proportional to the maximum force $f_{max}$ available at the actuator.
+    \item $\tau_{max}$ depends on the current state of the mechanism (represented by $q_3(t)$ and $l_2(t)$) and the geometric parameters ($l_1$).
+    \item The expression involves ratios of quadratic terms in $q_3(t)$ and $l_2(t)$, reflecting the nonlinear nature of the mechanism's kinematics.
+    \item $\tau_{max}$ is inversely proportional to the Jacobian, meaning it increases when the mechanism is in configurations that provide mechanical advantage.
+\end{itemize}
+
+\paragraph{Limitations and Considerations:}
+\begin{itemize}
+    \item This analysis assumes static conditions and doesn't account for dynamic effects.
+    \item The expression becomes undefined when $l_1^2 - 2l_1l_2(t) + l_2^2(t) - q_3^2(t) = 0$, which corresponds to a singular configuration of the mechanism.
+    \item The time dependence of $l_2$ ($l_2(t)$) in the derived expression suggests that the analysis considered potential variations in link lengths, which might not be applicable in a rigid mechanism. For a fixed-length mechanism, $l_2$ would be constant.
+    \item In practice, joint limits and other mechanical constraints may prevent reaching the theoretical maximum torque in certain configurations.
+\end{itemize}
+
+The detailed derivation and symbolic manipulation can be found in the Jupyter notebook \texttt{E5.ipynb} in the Code folder.    \end{solution}
 \subsection{Exercise 6}
-\lipsum[11]
+Identify any singular configurations of the slider-crank mechanism.
 
 \begin{solution}
-    \lipsum[12]
+    The slider-crank mechanism (1-RRPR) has several singular configurations. These configurations can be identified by analyzing the Jacobian of the mechanism and finding positions where it becomes rank-deficient. The singular configurations are:
+
+    \begin{enumerate}
+        \item \textbf{Fully Extended Configuration:}
+        \begin{itemize}
+            \item When $q_1 = 0$ or $\pi$
+            \item In this configuration, the two links are fully extended or folded
+            \item The mechanism loses the ability to transmit force/motion in the direction perpendicular to the links
+        \end{itemize}
+
+        \item \textbf{Maximum Extension of Prismatic Joint:}
+        \begin{itemize}
+            \item When $q_3 = l_1 + l_2$
+            \item The prismatic joint is at its maximum extension
+            \item The mechanism loses the ability to extend further
+        \end{itemize}
+
+        \item \textbf{Minimum Extension of Prismatic Joint:}
+        \begin{itemize}
+            \item When $q_3 = |l_1 - l_2|$
+            \item The prismatic joint is at its minimum extension
+            \item The mechanism loses the ability to contract further
+        \end{itemize}
+    \end{enumerate}
+
+    In these configurations, the mechanism loses one or more degrees of freedom, and the relationship between input and output velocities becomes indeterminate. These singularities are important to consider in the design and control of the mechanism, as they can lead to loss of control or excessive forces in the joints.
+
+    The Jacobian analysis leading to the identification of these singular configurations can be found in the Jupyter notebook \texttt{E5.ipynb} in the Code folder.
 \end{solution}
 
 \section{Dynamics}
