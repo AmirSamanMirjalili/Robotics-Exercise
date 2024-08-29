@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2024.7.31)  29 AUG 2024 13:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2024.7.31)  29 AUG 2024 15:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1562,7 +1562,7 @@ Package minitoc Info: I0033
 Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/lmr/m/sc/14.4'.
 (microtype)             Ignoring protrusion settings for this character.
-<University_Logo.png, id=168, 90.3375pt x 85.2786pt>
+<University_Logo.png, id=172, 90.3375pt x 85.2786pt>
 File: University_Logo.png Graphic file (type png)
 <use University_Logo.png>
 Package pdftex.def Info: University_Logo.png  used on input line 19.
@@ -1655,12 +1655,12 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (./main.mtc2)
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <9> on input line 2.
-<6DofSerialRobot.png, id=238, 316.18124pt x 234.1247pt>
+<6DofSerialRobot.png, id=244, 316.18124pt x 234.1247pt>
 File: 6DofSerialRobot.png Graphic file (type png)
 <use 6DofSerialRobot.png>
 Package pdftex.def Info: 6DofSerialRobot.png  used on input line 13.
 (pdftex.def)             Requested size: 217.66211pt x 161.17467pt.
-<ParallelRobot.png, id=239, 246.9225pt x 238.64156pt>
+<ParallelRobot.png, id=245, 246.9225pt x 238.64156pt>
 File: ParallelRobot.png Graphic file (type png)
 <use ParallelRobot.png>
 Package pdftex.def Info: ParallelRobot.png  used on input line 20.
@@ -1671,7 +1671,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [4
 
 ]
-<6dofserial.pdf, id=246, 316.18124pt x 234.1247pt>
+<6dofserial.pdf, id=252, 316.18124pt x 234.1247pt>
 File: 6dofserial.pdf Graphic file (type pdf)
 <use 6dofserial.pdf>
 Package pdftex.def Info: 6dofserial.pdf  used on input line 35.
@@ -1689,7 +1689,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [7]
 [8] [9]
-<The-Bennett-linkage-and-its-geometric-description-22_Q640.jpg, id=363, 522.451
+<The-Bennett-linkage-and-its-geometric-description-22_Q640.jpg, id=369, 522.451
 87pt x 363.60844pt>
 File: The-Bennett-linkage-and-its-geometric-description-22_Q640.jpg Graphic fil
 e (type jpg)
@@ -1697,14 +1697,14 @@ e (type jpg)
 Package pdftex.def Info: The-Bennett-linkage-and-its-geometric-description-22_Q
 640.jpg  used on input line 324.
 (pdftex.def)             Requested size: 227.62209pt x 158.41806pt.
-<redudant.png, id=366, 360.59718pt x 508.90125pt>
+<redudant.png, id=372, 360.59718pt x 508.90125pt>
 File: redudant.png Graphic file (type png)
 <use redudant.png>
 Package pdftex.def Info: redudant.png  used on input line 356.
 (pdftex.def)             Requested size: 227.62209pt x 321.23846pt.
  [10 <./The-Bennett-linkage-and-its-geometric-description-22_Q640.jpg>]
 [11] [12 <./redudant.png>]
-<3dofUP.pdf, id=389, 8.53583pt x 17.07166pt>
+<3dofUP.pdf, id=395, 8.53583pt x 17.07166pt>
 File: 3dofUP.pdf Graphic file (type pdf)
 <use 3dofUP.pdf>
 Package pdftex.def Info: 3dofUP.pdf  used on input line 409.
@@ -1727,12 +1727,12 @@ Package microtype Info: Loading generic protrusion settings for font family
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [14 <./3dofUP.pdf>] [15] [16] [17] [18] [19] [20]
-<slider_crank_linkage.pdf, id=462, 14.22638pt x 8.53583pt>
+<slider_crank_linkage.pdf, id=468, 14.22638pt x 8.53583pt>
 File: slider_crank_linkage.pdf Graphic file (type pdf)
 <use slider_crank_linkage.pdf>
 Package pdftex.def Info: slider_crank_linkage.pdf  used on input line 744.
 (pdftex.def)             Requested size: 290.22107pt x 174.2251pt.
-<general_parallel_mechanism.pdf, id=466, 14.22638pt x 11.3811pt>
+<general_parallel_mechanism.pdf, id=472, 14.22638pt x 11.3811pt>
 File: general_parallel_mechanism.pdf Graphic file (type pdf)
 <use general_parallel_mechanism.pdf>
 Package pdftex.def Info: general_parallel_mechanism.pdf  used on input line 814
@@ -1754,19 +1754,34 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 See the caption package documentation for explanation.
 
 [21 <./slider_crank_linkage.pdf>] [22 <./general_parallel_mechanism.pdf>]
-[23] [24] [25] [26] [27] [28] [29]) (./control.tex
+[23] [24] [25] [26] [27] [28]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [29]
+Underfull \vbox (badness 1735) has occurred while \output is active []
+
+ [30])
+(./control.tex
 Chapter 3.
 \openout3 = `main.mtc'.
 
 \openout3 = `main.mtc'.
 
-(./main.mtc3)) (./questionnaire.tex
+(./main.mtc3)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [31])
+(./questionnaire.tex
 Chapter 4.
 \openout3 = `main.mtc'.
 
 \openout3 = `main.mtc'.
 
-(./main.mtc4) [30] [31] [32] [33]) [34] (./main.bbl)
+(./main.mtc4)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [32]
+[33] [34] [35]) [36] (./main.bbl)
 Package minitoc Info: I0009
 (minitoc)             Listing minitoc auxiliary files. 
 (minitoc)             Creating the main.maf file.
@@ -1790,14 +1805,14 @@ Package minitoc(hints) Warning: W0024
 
 
 AED: lastpage setting LastPage
-[35]
+[37]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 53.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 53.
  (./main.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 53.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 53.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: D744C93CB4DED64FAF0FA6131DC64AA3;1892.
+(rerunfilecheck)             Checksum: DFC72769DAE9170D82F2517D464276A5;1972.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -1807,11 +1822,11 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 46969 strings out of 481239
- 1053324 string characters out of 5920377
- 1838846 words of memory out of 5000000
- 60820 multiletter control sequences out of 15000+600000
- 653502 words of font info for 181 fonts, out of 8000000 for 9000
+ 46975 strings out of 481239
+ 1053373 string characters out of 5920377
+ 1836916 words of memory out of 5000000
+ 60819 multiletter control sequences out of 15000+600000
+ 653585 words of font info for 182 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  81i,15n,131p,1129b,1429s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dv
@@ -1829,10 +1844,10 @@ m/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf
 0.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/font
 s/type1/public/lm/lmsy8.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb>
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (35 pages, 876556 bytes).
+Output written on main.pdf (37 pages, 883055 bytes).
 PDF statistics:
- 689 PDF objects out of 1000 (max. 8388607)
- 556 compressed objects within 6 object streams
- 140 named destinations out of 1000 (max. 500000)
- 36810 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 710 PDF objects out of 1000 (max. 8388607)
+ 575 compressed objects within 6 object streams
+ 145 named destinations out of 1000 (max. 500000)
+ 36818 words of extra memory for PDF output out of 42996 (max. 10000000)
 

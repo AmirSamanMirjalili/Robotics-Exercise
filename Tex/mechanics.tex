@@ -1035,8 +1035,8 @@ Substituting this into our expression for $\tau_{max}$:
 \end{itemize}
 
 The detailed derivation and symbolic manipulation can be found in the Jupyter notebook \texttt{E5.ipynb} in the Code folder.    \end{solution}
-\subsection{Exercise 6}
-Identify any singular configurations of the slider-crank mechanism.
+\subsection{6. singular configurations}
+Here we will Identify any singular configurations of the slider-crank mechanism.
 
 \begin{solution}
     The slider-crank mechanism (1-RRPR) has several singular configurations. These configurations can be identified by analyzing the Jacobian of the mechanism and finding positions where it becomes rank-deficient. The singular configurations are:
@@ -1066,8 +1066,73 @@ Identify any singular configurations of the slider-crank mechanism.
 
     In these configurations, the mechanism loses one or more degrees of freedom, and the relationship between input and output velocities becomes indeterminate. These singularities are important to consider in the design and control of the mechanism, as they can lead to loss of control or excessive forces in the joints.
 
-    The Jacobian analysis leading to the identification of these singular configurations can be found in the Jupyter notebook \texttt{E5.ipynb} in the Code folder.
+    \paragraph{Note:} The Jacobian analysis leading to the identification of these singular configurations can be found in the Jupyter notebook \texttt{E5.ipynb} in the Code folder.
 \end{solution}
+
+
+\subsection{Exercise 6}
+Donald is from the United States of America and Angela comes from Europe. They have to work together on a robotics project and they don't always agree with each other. While Donald is obsessed with the Imperial system of units, Angela likes to use the modern metric system. They are together working on a 6 DOF robotic manipulator (with 3 translational and 3 rotational DOFs) mounted on a 3 DOF gantry crane which can place the base of the robot in any 3D position $(x_B, y_B, z_B) \in \mathbb{R}^3$. Angela develops the software for the robot manipulator and Donald develops the software for the 3 DOF gantry crane. They are exchanging black-box models and are not allowed to modify each other's code.
+
+\begin{solution}
+
+\subsubsection*{1. Converting meters to inches for the gantry crane}
+
+Yes, Angela can find a linear scaling factor to convert the 3D position from meters to inches.
+
+\begin{itemize}
+    \item The conversion factor from meters to inches is: 1 meter = 39.3701 inches
+    \item This is a constant scalar value that can be applied uniformly to all three dimensions
+    \item The conversion can be represented as a linear transformation:
+    
+    \begin{equation}
+        \begin{bmatrix} x_{\text{inches}} \\ y_{\text{inches}} \\ z_{\text{inches}} \end{bmatrix} = 
+        39.3701 \cdot \begin{bmatrix} x_{\text{meters}} \\ y_{\text{meters}} \\ z_{\text{meters}} \end{bmatrix}
+    \end{equation}
+\end{itemize}
+
+This linear scaling preserves the proportions and relationships in the 3D space, making it suitable for use with Donald's model.
+
+\subsubsection*{2. Converting metric to imperial for the robot manipulator}
+
+Donald cannot use a single linear scaling factor to convert the 6D pose from the metric system to the imperial system.
+
+\begin{itemize}
+    \item For the translational part $(x_E, y_E, z_E)$, a linear scaling factor (39.3701) can be used to convert from meters to inches, similar to part 1.
+    \item However, for the rotational part:
+    \begin{itemize}
+        \item Quaternions cannot be directly converted to Euler angles (roll, pitch, yaw) using a linear scaling factor.
+        \item The conversion from quaternions to Euler angles involves nonlinear trigonometric functions.
+        \item Even after converting to Euler angles, no scaling is needed as angles are dimensionless (radians to degrees conversion is a simple multiplication by $180/\pi$, but this is not related to the metric-imperial conversion).
+    \end{itemize}
+\end{itemize}
+
+Therefore, a single linear scaling factor cannot be applied to the entire 6D pose to achieve the desired conversion.
+
+\subsubsection*{3. Using each other's models}
+
+Yes, it is possible for Donald and Angela to use each other's models with some additional steps:
+
+\begin{itemize}
+    \item For Donald to use Angela's inverse kinematics model:
+    \begin{itemize}
+        \item Convert translational inputs from inches to meters: multiply by 1/39.3701
+        \item Convert rotational inputs from Euler angles (degrees) to quaternions
+        \item Apply Angela's model
+        \item No conversion needed for the output (actuator commands)
+    \end{itemize}
+    
+    \item For Angela to use Donald's gantry crane model:
+    \begin{itemize}
+        \item Convert inputs from meters to inches: multiply by 39.3701
+        \item Apply Donald's model
+        \item No conversion needed for the output (actuator commands)
+    \end{itemize}
+\end{itemize}
+
+These conversions can be implemented as wrapper functions around the black-box models, allowing Donald and Angela to work in their preferred units while still utilizing each other's software components effectively.
+
+\end{solution}
+
 
 \section{Dynamics}
 \subsection{Exercise 7}
