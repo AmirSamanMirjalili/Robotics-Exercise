@@ -1136,10 +1136,117 @@ These conversions can be implemented as wrapper functions around the black-box m
 
 \section{Dynamics}
 \subsection{Exercise 7}
-\lipsum[13]
+Consider a pendulum robot with a bob of mass $m$ connected to the ground link by a massless link of length $l$ in Figure 4. Denote with $\theta$ the angle made by the bob with the vertical axis in the anti-clockwise sense.
 
 \begin{solution}
-    \lipsum[14]
+
+\subsubsection*{1. Inverse Dynamics}
+
+The expression for torque acting at the revolute joint ($\tau$) in terms of ($\theta$, $\dot{\theta}$, $\ddot{\theta}$) is:
+
+\begin{equation}
+    \tau = ml^2\ddot{\theta} + mgl\sin(\theta)
+\end{equation}
+
+where:
+\begin{itemize}
+    \item $m$ is the mass of the bob
+    \item $l$ is the length of the link
+    \item $g$ is the acceleration due to gravity
+    \item $\theta$, $\dot{\theta}$, and $\ddot{\theta}$ are the angular position, velocity, and acceleration respectively
+\end{itemize}
+
+This equation accounts for both the inertial torque ($ml^2\ddot{\theta}$) and the gravitational torque ($mgl\sin(\theta)$).
+
+\subsubsection*{2. Forward Dynamics}
+
+The expression for acceleration at the revolute joint ($\ddot{\theta}$) in terms of ($\tau$) is:
+
+\begin{equation}
+    \ddot{\theta} = \frac{\tau - mgl\sin(\theta)}{ml^2}
+\end{equation}
+
+This equation is derived by solving the inverse dynamics equation for $\ddot{\theta}$.
+
+\subsubsection*{3. Simulation Program}
+
+To simulate the free-fall of the pendulum (i.e., $\tau = 0.0$), we can use a simple Newton-Euler numerical integration scheme. Here's a Python program that implements this simulation and provides a visualization:
+
+\begin{verbatim}
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
+
+# Parameters
+m = 1.0  # mass of bob (kg)
+l = 1.0  # length of pendulum (m)
+g = 9.81  # acceleration due to gravity (m/s^2)
+dt = 0.01  # time step (s)
+t_max = 10.0  # maximum simulation time (s)
+
+# Initial conditions
+theta = np.pi/4  # initial angle (radians)
+omega = 0.0  # initial angular velocity (rad/s)
+
+# Lists to store simulation data
+t_list = [0]
+theta_list = [theta]
+
+# Simulation loop
+t = 0
+while t < t_max:
+    # Calculate acceleration
+    alpha = -g/l * np.sin(theta)
+    
+    # Update angular velocity and position
+    omega += alpha * dt
+    theta += omega * dt
+    
+    # Store results
+    t += dt
+    t_list.append(t)
+    theta_list.append(theta)
+
+# Convert lists to numpy arrays
+t_array = np.array(t_list)
+theta_array = np.array(theta_list)
+
+# Calculate x and y positions of the bob
+x = l * np.sin(theta_array)
+y = -l * np.cos(theta_array)
+
+# Create animation
+fig, ax = plt.subplots()
+ax.set_xlim(-l-0.1, l+0.1)
+ax.set_ylim(-l-0.1, l+0.1)
+line, = ax.plot([], [], 'o-', lw=2)
+
+def init():
+    line.set_data([], [])
+    return line,
+
+def animate(i):
+    line.set_data([0, x[i]], [0, y[i]])
+    return line,
+
+anim = FuncAnimation(fig, animate, init_func=init,
+                     frames=len(t_array), interval=dt*1000, blit=True)
+
+plt.show()
+\end{verbatim}
+
+This program uses the forward dynamics equation with $\tau = 0$ to simulate the free-fall of the pendulum. It employs a simple Euler integration method to update the pendulum's state over time. The resulting animation shows the pendulum swinging back and forth under the influence of gravity.
+
+Key components of the simulation:
+\begin{itemize}
+    \item The acceleration is calculated using $\ddot{\theta} = -\frac{g}{l}\sin(\theta)$ (derived from setting $\tau = 0$ in the forward dynamics equation).
+    \item The angular velocity and position are updated using Euler integration.
+    \item The position of the bob is calculated in Cartesian coordinates for visualization.
+    \item Matplotlib's FuncAnimation is used to create an animation of the pendulum's motion.
+\end{itemize}
+
+This simulation provides a visual representation of the pendulum's behavior, allowing for intuitive understanding of its dynamics under free-fall conditions.
+
 \end{solution}
 
 \subsection{Exercise 8}

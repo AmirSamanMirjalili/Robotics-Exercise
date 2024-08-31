@@ -43,22 +43,22 @@
 \contentsline {subsection}{\numberline {2.0.7}Exercise 6}{29}{subsection.2.0.7}%
 \contentsline {section}{Dynamics}{30}{section*.41}%
 \contentsline {subsection}{\numberline {2.0.8}Exercise 7}{30}{subsection.2.0.8}%
-\contentsline {subsection}{\numberline {2.0.9}Exercise 8}{31}{subsection.2.0.9}%
-\contentsline {subsection}{\numberline {2.0.10}Exercise 9}{31}{subsection.2.0.10}%
-\contentsline {chapter}{\numberline {3}Control}{31}{chapter.3}%
-\contentsline {section}{Exercise 10}{32}{section*.42}%
-\contentsline {section}{Exercise 11}{32}{section*.43}%
-\contentsline {section}{Exercise 12}{32}{section*.44}%
-\contentsline {chapter}{\numberline {4}Questionnaire}{32}{chapter.4}%
-\contentsline {section}{Question 1}{33}{section*.45}%
-\contentsline {section}{Question 2}{34}{section*.46}%
-\contentsline {section}{Question 3}{34}{section*.47}%
-\contentsline {section}{Question 4}{34}{section*.48}%
-\contentsline {section}{Question 5}{35}{section*.49}%
-\contentsline {section}{Question 6}{35}{section*.50}%
-\contentsline {section}{Question 7}{35}{section*.51}%
-\contentsline {section}{Question 8}{35}{section*.52}%
-\contentsline {section}{Question 9}{36}{section*.53}%
-\contentsline {section}{Question 10}{36}{section*.54}%
-\contentsline {chapter}{References}{37}{section*.54}%
+\contentsline {subsection}{\numberline {2.0.9}Exercise 8}{33}{subsection.2.0.9}%
+\contentsline {subsection}{\numberline {2.0.10}Exercise 9}{33}{subsection.2.0.10}%
+\contentsline {chapter}{\numberline {3}Control}{33}{chapter.3}%
+\contentsline {section}{Exercise 10}{34}{section*.42}%
+\contentsline {section}{Exercise 11}{34}{section*.43}%
+\contentsline {section}{Exercise 12}{34}{section*.44}%
+\contentsline {chapter}{\numberline {4}Questionnaire}{34}{chapter.4}%
+\contentsline {section}{Question 1}{35}{section*.45}%
+\contentsline {section}{Question 2}{36}{section*.46}%
+\contentsline {section}{Question 3}{36}{section*.47}%
+\contentsline {section}{Question 4}{36}{section*.48}%
+\contentsline {section}{Question 5}{37}{section*.49}%
+\contentsline {section}{Question 6}{37}{section*.50}%
+\contentsline {section}{Question 7}{37}{section*.51}%
+\contentsline {section}{Question 8}{37}{section*.52}%
+\contentsline {section}{Question 9}{38}{section*.53}%
+\contentsline {section}{Question 10}{38}{section*.54}%
+\contentsline {chapter}{References}{39}{section*.54}%
 \contentsfinish 
