@@ -1,0 +1,13 @@
+<mujoco>
+    <option gravity="0 0 -9.81"/>
+    <worldbody>
+        <body name="pole" pos="0 0 0">
+            <joint name="hinge" type="hinge" axis="0 1 0" pos="0 0 0"/>
+            <geom name="pole" type="capsule" fromto="0 0 0 0 0 -1" size="0.02" mass="1"/>
+            <geom name="bob" type="sphere" pos="0 0 -1" size="0.1" mass="1"/>
+        </body>
+    </worldbody>
+    <actuator>
+        <motor name="torque" joint="hinge" gear="1" ctrllimited="true" ctrlrange="-100 100"/>
+    </actuator>
+</mujoco>
